@@ -1,0 +1,21 @@
+{
+  "name": "Thuê Xe VF7 – VinFast VF7 Plus 2 Cầu",
+  "short_name": "Thuê Xe VF7",
+  "description": "Cho thuê VinFast VF7 Plus 2 cầu 349HP – SUV điện cao cấp",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#05080f",
+  "theme_color": "#11b0f5",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

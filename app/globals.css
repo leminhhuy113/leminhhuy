@@ -1,0 +1,250 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 250 251 255;
+  --foreground: 11 14 28;
+  --glass-bg: 255 255 255;
+  --glass-border: 255 255 255;
+  --accent: 17 176 245;
+  --accent-2: 99 102 241;
+  --accent-3: 236 72 153;
+}
+
+.dark {
+  --background: 5 8 18;
+  --foreground: 240 245 255;
+  --glass-bg: 20 25 45;
+  --glass-border: 255 255 255;
+  --accent: 61 204 255;
+  --accent-2: 139 92 246;
+  --accent-3: 244 114 182;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: rgb(var(--background));
+  color: rgb(var(--foreground));
+  font-feature-settings: "rlig" 1, "calt" 1;
+  overflow-x: hidden;
+}
+
+/* Liquid Glass Card */
+.glass {
+  background: rgba(var(--glass-bg), 0.55);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(var(--glass-border), 0.18);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.dark .glass {
+  background: rgba(var(--glass-bg), 0.45);
+  border: 1px solid rgba(var(--glass-border), 0.08);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.glass-strong {
+  background: rgba(var(--glass-bg), 0.75);
+  backdrop-filter: blur(40px) saturate(200%);
+  -webkit-backdrop-filter: blur(40px) saturate(200%);
+  border: 1px solid rgba(var(--glass-border), 0.25);
+}
+
+.dark .glass-strong {
+  background: rgba(var(--glass-bg), 0.6);
+  border: 1px solid rgba(var(--glass-border), 0.1);
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(
+    135deg,
+    rgb(var(--accent)) 0%,
+    rgb(var(--accent-2)) 50%,
+    rgb(var(--accent-3)) 100%
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient 8s ease infinite;
+}
+
+/* Aurora background */
+.aurora {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.aurora::before,
+.aurora::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.5;
+  animation: float 12s ease-in-out infinite;
+}
+
+.aurora::before {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgb(var(--accent)) 0%, transparent 70%);
+  top: -150px;
+  left: -100px;
+}
+
+.aurora::after {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgb(var(--accent-3)) 0%, transparent 70%);
+  bottom: -200px;
+  right: -150px;
+  animation-delay: -4s;
+}
+
+.dark .aurora::before,
+.dark .aurora::after {
+  opacity: 0.3;
+}
+
+/* Glow button */
+.btn-glow {
+  position: relative;
+  background: linear-gradient(135deg, rgb(var(--accent)), rgb(var(--accent-2)));
+  color: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(17, 176, 245, 0.35);
+}
+
+.btn-glow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(17, 176, 245, 0.5);
+}
+
+.btn-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255,255,255,0.3), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn-glow:hover::before {
+  opacity: 1;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(rgb(var(--accent)), rgb(var(--accent-2)));
+  border-radius: 10px;
+}
+
+/* Noise texture */
+.noise {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Floating shapes */
+.shape-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* Form inputs */
+.form-input {
+  width: 100%;
+  padding: 14px 18px;
+  background: rgba(var(--glass-bg), 0.5);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(var(--glass-border), 0.2);
+  border-radius: 14px;
+  color: rgb(var(--foreground));
+  font-size: 15px;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.dark .form-input {
+  background: rgba(var(--glass-bg), 0.4);
+  border: 1px solid rgba(var(--glass-border), 0.1);
+}
+
+.form-input:focus {
+  border-color: rgb(var(--accent));
+  box-shadow: 0 0 0 4px rgba(17, 176, 245, 0.15);
+}
+
+.form-input::placeholder {
+  color: rgba(var(--foreground), 0.4);
+}
+
+/* Checkbox styling */
+.glass-checkbox {
+  appearance: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  border: 2px solid rgba(var(--accent), 0.4);
+  background: rgba(var(--glass-bg), 0.5);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.glass-checkbox:checked {
+  background: linear-gradient(135deg, rgb(var(--accent)), rgb(var(--accent-2)));
+  border-color: transparent;
+}
+
+.glass-checkbox:checked::after {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  width: 6px;
+  height: 11px;
+  border: solid white;
+  border-width: 0 2.5px 2.5px 0;
+  transform: rotate(45deg);
+}
+
+/* Selection */
+::selection {
+  background: rgba(17, 176, 245, 0.3);
+}
